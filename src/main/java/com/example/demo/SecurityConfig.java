@@ -20,13 +20,14 @@ public class SecurityConfig {
             http.csrf(csrf -> csrf.disable())
                     .authorizeHttpRequests((authorize) ->
                             authorize.anyRequest().authenticated()
+                            //TODO: Да има определени мапинги за студент и преподавател
                     ).formLogin(
                             form -> form
                                     .usernameParameter("username")
                                     .passwordParameter("password")
                                     .loginPage("/login")
                                     .loginProcessingUrl("/login")
-                                    .defaultSuccessUrl("/")
+                                    .defaultSuccessUrl("/home")
                                     .permitAll()
                     ).logout(
                             logout -> logout

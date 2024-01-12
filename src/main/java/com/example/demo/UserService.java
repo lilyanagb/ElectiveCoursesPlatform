@@ -22,11 +22,11 @@ package com.example.demo;
 //         return userRepository.findAll();
 //     }
 
-//     public User getUserById(Long userId) {
+//     public User getUserById(Integer userId) {
 //         return userRepository.findById(userId).orElse(null);
 //     }
 
-//     public void deleteUser(Long userId) {
+//     public void deleteUser(Integer userId) {
 //         userRepository.deleteById(userId);
 //     }
 // }

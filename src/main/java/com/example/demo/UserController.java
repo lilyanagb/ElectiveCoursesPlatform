@@ -23,7 +23,7 @@ package com.example.demo;
 //     }
 
 //     @GetMapping("/{userId}")
-//     public ResponseEntity<User> getUserById(@PathVariable Long userId) {
+//     public ResponseEntity<User> getUserById(@PathVariable Integer userId) {
 //         User user = userService.getUserById(userId);
 //         return new ResponseEntity<>(user, HttpStatus.OK);
 //     }
@@ -35,7 +35,7 @@ package com.example.demo;
 //     }
 
 //     @DeleteMapping("/{userId}")
-//     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+//     public ResponseEntity<Void> deleteUser(@PathVariable Integer userId) {
 //         userService.deleteUser(userId);
 //         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 //     }

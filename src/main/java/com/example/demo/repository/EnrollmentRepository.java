@@ -6,6 +6,6 @@ package com.example.demo.repository;
 // import com.example.demo.model.Enrollment;
 
 // @Repository
-// public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
+// public interface EnrollmentRepository extends JpaRepository<Enrollment, Integer> {
 //     // ...
 // }

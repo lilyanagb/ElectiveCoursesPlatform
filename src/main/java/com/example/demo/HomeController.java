@@ -4,6 +4,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class HomeController {
@@ -18,7 +20,7 @@ public class HomeController {
         
         // За целите на примера, ще използваме хардкодната информация за ролята
         String role = "ROLE_TEACHER"; // Пример
-
+        // String role = authentication.getAuthorities().;
         if (role.equals("ROLE_TEACHER")) {
             return "redirect:/teacher/dashboard";
         } else if (role.equals("ROLE_STUDENT")) {
@@ -27,7 +29,11 @@ public class HomeController {
             return "redirect:/access-denied"; // Обработка на грешка
         }
     }
-
+    @GetMapping("/home")
+    public String homeDashboard() {
+        return "home";
+    }
+    
     @GetMapping("/teacher/dashboard")
     public String teacherDashboard() {
         return "teacher_dashboard";

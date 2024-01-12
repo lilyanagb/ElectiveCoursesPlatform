@@ -6,6 +6,6 @@ package com.example.demo.repository;
 // import com.example.demo.model.Course;
 
 // @Repository
-// public interface CourseRepository extends JpaRepository<Course, Long> {
+// public interface CourseRepository extends JpaRepository<Course, Integer> {
 //     // ...
 // }

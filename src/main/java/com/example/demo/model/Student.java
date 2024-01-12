@@ -8,7 +8,7 @@ package com.example.demo.model;
 
 //     @Id
 //     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Long id;
+//     private Integer id;
 
 //     @ManyToOne
 //     @JoinColumn(name = "user_id", nullable = false)
