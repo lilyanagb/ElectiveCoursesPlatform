@@ -7,5 +7,5 @@ import com.example.demo.model.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
-    // Може те да добавите допълнителни методи за търсене, ако е необходимо
+    
 }
