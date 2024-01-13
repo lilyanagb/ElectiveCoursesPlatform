@@ -13,8 +13,6 @@ public class Role {
     @Column(name = "name", nullable = false)
     private String name;
 
-    // Гетъри и сетъри
-
     public Integer getId() {
         return id;
     }

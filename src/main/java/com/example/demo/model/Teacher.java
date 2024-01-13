@@ -1,21 +1,44 @@
 package com.example.demo.model;
 
-// import javax.persistence.*;
+import jakarta.persistence.*;
 
-// @Entity
-// @Table(name = "teacher")
-// public class Teacher {
+@Entity
+@Table(name = "teacher")
+public class Teacher {
 
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-//     @ManyToOne
-//     @JoinColumn(name = "user_id", nullable = false)
-//     private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-//     @Column(name = "name", nullable = false)
-//     private String name;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-//     // Гетъри и сетъри
-// }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+}
