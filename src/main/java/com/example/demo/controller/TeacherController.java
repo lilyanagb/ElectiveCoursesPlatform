@@ -22,14 +22,12 @@ import com.example.demo.repository.UserRepository;
 public class TeacherController {
 
     private final EnrollmentRepository enrollmentRepository;
-    private final CourseRepository courseRepository;
     private final UserRepository userRepository;
 
     public TeacherController(EnrollmentRepository enrollmentRepository,
                              CourseRepository courseRepository,
                              UserRepository userRepository) {
         this.enrollmentRepository = enrollmentRepository;
-        this.courseRepository = courseRepository;
         this.userRepository = userRepository;
     }
 
@@ -44,7 +42,6 @@ public class TeacherController {
             courses.add(enrollment.getCourse());
         }
 
-        // Add 'courses' or any other data to the model if needed
         model.addAttribute("courses", courses);
         return "teacher/dashboard";
     }
