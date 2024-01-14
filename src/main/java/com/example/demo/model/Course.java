@@ -12,10 +12,22 @@ public class Course {
 
     @Column(name = "name", nullable = false)
     private String name;
+    
+    @Column(name = "type", nullable = false)
+    private String type;
 
-    @ManyToOne
-    @JoinColumn(name = "teacher_id", nullable = false)
-    private Teacher teacher;
+    @Column(name = "credits", nullable = false)
+    private Integer credits;
 
-    // Гетъри и сетъри
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Integer getCredits() {
+        return credits;
+    }
 }

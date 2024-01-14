@@ -11,12 +11,16 @@ public class Enrollment {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", nullable = false)
-    private Student student;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
+
+    @ManyToOne
+    @JoinColumn(name = "enrollment_type_id", nullable = false)
+    private EnrollmentType enrollmentType;
 
     public Integer getId() {
         return id;
@@ -26,12 +30,12 @@ public class Enrollment {
         this.id = id;
     }
 
-    public Student getStudent() {
-        return student;
+    public User getUser() {
+        return user;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Course getCourse() {
@@ -40,6 +44,14 @@ public class Enrollment {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public EnrollmentType getEnrollmentType() {
+        return enrollmentType;
+    }
+
+    public void setEnrollmentType(EnrollmentType enrollmentType) {
+        this.enrollmentType = enrollmentType;
     }
 
 }
