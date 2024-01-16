@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.model.Course;
 import com.example.demo.model.Enrollment;
 import com.example.demo.model.User;
+import com.example.demo.model.Role;
 import com.example.demo.repository.EnrollmentRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.repository.RoleRepository;
+import com.example.demo.service.UserService;
 
 import org.springframework.ui.Model;
 
@@ -23,11 +26,14 @@ public class StudentController {
 
     private final EnrollmentRepository enrollmentRepository;
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     public StudentController(EnrollmentRepository enrollmentRepository,
-                             UserRepository userRepository) {
+                             UserRepository userRepository, 
+                             RoleRepository roleRepository) {
         this.enrollmentRepository = enrollmentRepository;
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @GetMapping("/dashboard")
@@ -44,5 +50,17 @@ public class StudentController {
         model.addAttribute("courses", courses);
 
         return "student/dashboard";
+    }
+
+    @GetMapping("/profile")
+    public String showStudentProfile(Model model, Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User user = userRepository.findByUsernameOrEmail(userDetails.getUsername(), "").orElse(null);
+        Role userRole = roleRepository.findById(user.getId()).orElse(null);
+        
+        model.addAttribute("user", user);
+        model.addAttribute("userRole", userRole);
+        
+        return "student/profile";
     }
 }
