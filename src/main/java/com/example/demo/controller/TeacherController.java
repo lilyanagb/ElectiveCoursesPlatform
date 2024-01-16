@@ -14,7 +14,6 @@ import com.example.demo.model.Course;
 import com.example.demo.model.Enrollment;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
-import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.EnrollmentRepository;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;

@@ -67,6 +67,12 @@
                 <td th:text="${course.getName()}"></td>
                 <td th:text="${course.getType()}"></td>
                 <td th:text="${course.getCredits()}"></td>
+                <td>
+                    <form th:action="@{/course/allcourses}" method="post">
+                        <input type="hidden" name="id" th:value="${course.id}" />
+                        <button type="submit">Запиши се</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>

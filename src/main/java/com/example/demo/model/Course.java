@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "course")
@@ -18,6 +19,13 @@ public class Course {
 
     @Column(name = "credits", nullable = false)
     private Integer credits;
+
+    @OneToMany(mappedBy = "course")
+    private List<Enrollment> enrollments;
+
+    public Integer getId(){
+        return this.id;
+    }
 
     public void setName(String name) {
         this.name = name;

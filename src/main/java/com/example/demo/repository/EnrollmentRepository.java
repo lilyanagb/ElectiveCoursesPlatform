@@ -9,7 +9,6 @@ import com.example.demo.model.Enrollment;
 
 @Repository
 public interface EnrollmentRepository extends JpaRepository<Enrollment, Integer> {
-    // List<Enrollment> findAllByCourse(Course course);
     List<Enrollment> findAllByUserId(Integer user_id);
-    // Enrollment findByCourseAndUserName(Course course, User user);
+    List<Enrollment> findAllByUserIdAndCourseId(Integer userId, Integer courseId);
 }

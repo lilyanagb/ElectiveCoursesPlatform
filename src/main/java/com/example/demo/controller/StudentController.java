@@ -16,7 +16,6 @@ import com.example.demo.model.Role;
 import com.example.demo.repository.EnrollmentRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.RoleRepository;
-import com.example.demo.service.UserService;
 
 import org.springframework.ui.Model;
 

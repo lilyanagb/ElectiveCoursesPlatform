@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.Course;
 import com.example.demo.model.Enrollment;
@@ -18,6 +19,9 @@ import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.EnrollmentRepository;
 import com.example.demo.repository.EnrollmentTypeRepository;
 import com.example.demo.repository.UserRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/course")
@@ -48,7 +52,7 @@ public class CourseController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         if (userDetails.getAuthorities().contains(new SimpleGrantedAuthority("teacher"))) {
-         return "course/form";
+            return "course/form";
         } else {
             return "redirect:/dashboard";
         }
@@ -73,5 +77,36 @@ public class CourseController {
         } 
         
         return "redirect:/dashboard";
+    }
+
+    @PostMapping("/allcourses")
+    public String enrollStudent(@RequestParam("id") Integer courseId, Model model, Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User currentUser = userRepository.findByUsernameOrEmail(userDetails.getUsername(), "").orElse(null);
+
+        Optional<Course> courseOptional = courseRepository.findById(courseId);
+
+        if (courseOptional.isPresent()) {
+            Course course = courseOptional.get();
+
+            if (isEnrolled(currentUser, course)) {
+                //model.addAttribute("alreadyEnrolled", true);
+                return "redirect:/course/";
+            }
+
+            Enrollment enrollment = new Enrollment();
+            enrollment.setUser(currentUser);
+            enrollment.setCourse(course);
+            enrollment.setEnrollmentType(enrollmentTypeRepository.findByName("student"));
+            
+            enrollmentRepository.save(enrollment);
+        }
+        
+        return "redirect:/course/";
+    } 
+
+    private boolean isEnrolled(User student, Course course) {
+        List<Enrollment> enrollments = enrollmentRepository.findAllByUserIdAndCourseId(student.getId(), course.getId());
+        return !enrollments.isEmpty();
     }
 }
