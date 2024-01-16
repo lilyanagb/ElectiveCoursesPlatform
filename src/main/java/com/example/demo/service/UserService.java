@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.service;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,16 +14,17 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.model.User;
 
 @Service
-public class UserDetail implements UserDetailsService {
+public class UserService implements UserDetailsService {
     @Autowired    
     UserRepository userRepo;
+    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByUsernameOrEmail(username, username).orElse(null);
         if(user == null){
             new UsernameNotFoundException("User not exists by Username");
         }
-        
+
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();   
         authorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
 

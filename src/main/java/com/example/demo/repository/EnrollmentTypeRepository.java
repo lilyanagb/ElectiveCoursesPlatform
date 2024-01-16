@@ -7,5 +7,5 @@ import com.example.demo.model.EnrollmentType;
 
 @Repository
 public interface EnrollmentTypeRepository extends JpaRepository<EnrollmentType, Integer> {
-
+    EnrollmentType findByName(String name);
 } 

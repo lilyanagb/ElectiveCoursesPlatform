@@ -23,7 +23,6 @@ public class TeacherController {
 
     private final EnrollmentRepository enrollmentRepository;
     private final UserRepository userRepository;
-
     public TeacherController(EnrollmentRepository enrollmentRepository,
                              CourseRepository courseRepository,
                              UserRepository userRepository) {
