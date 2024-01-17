@@ -40,9 +40,12 @@ public class CourseController {
     }
 
     @GetMapping("/")
-    public String allCourses(Model model) {
+    public String allCourses(Model model, @RequestParam(required = false) String error ) {
         model.addAttribute("courses", courseRepository.findAll());
-
+        
+        if (error != null && error.equals("true")) {
+            model.addAttribute("alreadyEnrolled", true);
+        }
         return "course/allcourses";
     }
 
@@ -79,7 +82,7 @@ public class CourseController {
         return "redirect:/dashboard";
     }
 
-    @PostMapping("/allcourses")
+    @PostMapping("/enrollcourse")
     public String enrollStudent(@RequestParam("id") Integer courseId, Model model, Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User currentUser = userRepository.findByUsernameOrEmail(userDetails.getUsername(), "").orElse(null);
@@ -90,8 +93,7 @@ public class CourseController {
             Course course = courseOptional.get();
 
             if (isEnrolled(currentUser, course)) {
-                //model.addAttribute("alreadyEnrolled", true);
-                return "redirect:/course/";
+                return "redirect:/course/?error=true";
             }
 
             Enrollment enrollment = new Enrollment();
@@ -103,6 +105,21 @@ public class CourseController {
         }
         
         return "redirect:/course/";
+    } 
+
+    @PostMapping("/removefromcourse")
+    public String removeStudentFromCourse(@RequestParam("id") Integer courseId, Model model, Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User currentUser = userRepository.findByUsernameOrEmail(userDetails.getUsername(), "").orElse(null);
+
+        Optional<Course> courseOptional = courseRepository.findById(courseId);
+
+        if (courseOptional.isPresent()) {
+            Enrollment enrollment = enrollmentRepository.findAllByUserIdAndCourseId(currentUser.getId(), courseId).get(0);
+            enrollmentRepository.deleteById(enrollment.getId());
+        }
+        
+        return "redirect:/dashboard";
     } 
 
     private boolean isEnrolled(User student, Course course) {

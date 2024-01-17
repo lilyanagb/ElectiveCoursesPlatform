@@ -50,7 +50,7 @@ public class TeacherController {
     }
 
     @GetMapping("/profile")
-    public String showStudentProfile(Model model, Authentication authentication) {
+    public String showTeacherProfile(Model model, Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User user = userRepository.findByUsernameOrEmail(userDetails.getUsername(), "").orElse(null);
         Role userRole = roleRepository.findById(user.getId()).orElse(null);

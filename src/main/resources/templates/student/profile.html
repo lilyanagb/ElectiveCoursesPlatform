@@ -6,29 +6,29 @@
     <title>Student</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet">
-    <style>
-        /* Style for the table */
-        table {
-            width: 50%;
-            margin-top: 20px; /* Add margin at the top */
-            margin: 20px auto; 
-            border-collapse: collapse;
-            border: 2px solid #333; /* Set a thicker border */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Add box-shadow */
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd; /* Add border to each cell */
-            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Add box-shadow */
-        }
-
-        h3 {
-            margin-top: 20px; 
-            text-align: center;
-        }
-    </style>
+        <style>
+            /* Style for the table */
+            table {
+                width: 50%;
+                margin-top: 20px;
+                margin: 20px auto;
+                border-collapse: collapse;
+                border: 1px solid #333;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Updated box-shadow for a better effect */
+            }
+        
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border: 1px solid #ddd;
+                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            }
+        
+            h3 {
+                margin-top: 20px;
+                text-align: center;
+            }
+        </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -66,6 +66,48 @@
         <td><strong>Роля:</strong></td>
         <td th:text="${userRole.name}"></td>
     </tr>
+</table>
+
+<table>
+    <h3>Таблица</h3>
+    <tr>
+        <td><strong>OKН</strong></td>
+        <td th:text="${results.passedType1}"></td>
+        <td th:text="4"></td>
+    </tr>
+    <tr>
+        <td><strong>ЯКН</strong></td>
+        <td th:text="${results.passedType2}"></td>
+        <td th:text="3"></td>
+    </tr>
+    <tr>
+        <td><strong>М</strong></td>
+        <td th:text="${results.passedType3}"></td>
+        <td th:text="2"></td>
+    </tr>
+    <tr>
+        <td><strong>ПМ</strong></td>
+        <td th:text="${results.passedType4}"></td>
+        <td th:text="1"></td>
+    </tr>
+    <tr>
+        <td><strong>КП</strong></td>
+        <td th:text="${results.passedType5}"></td>
+        <td th:text="5"></td>
+    </tr>
+    <tr>
+        <td><strong>Кредити</strong></td>
+        <td th:text="${results.credits}"></td>
+        <td th:text="48"></td>
+    </tr>
+
+    <!-- <option value="ОКН">ОКН</option>
+    <option value="ЯКН">ЯКН</option>
+    <option value="М">М</option>
+    <option value="ПМ">ПМ</option>
+    <option value="Др">Др</option>
+    <option value="КП">КП</option>
+    <option value="С">С</option> -->
 </table>
 </body>
 </html>

@@ -20,9 +20,6 @@ public class Course {
     @Column(name = "credits", nullable = false)
     private Integer credits;
 
-    @OneToMany(mappedBy = "course")
-    private List<Enrollment> enrollments;
-
     public Integer getId(){
         return this.id;
     }

@@ -60,6 +60,7 @@
                 <th>Course Name</th>
                 <th>Course Type</th>
                 <th>Course Credits</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -67,6 +68,12 @@
                 <td th:text="${course.getName()}"></td>
                 <td th:text="${course.getType()}"></td>
                 <td th:text="${course.getCredits()}"></td>
+                <td>
+                    <form th:action="@{/course/removefromcourse}" method="post">
+                        <input type="hidden" name="id" th:value="${course.id}" />
+                        <button type="submit" class="btn btn-light">Отпиши ме</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>

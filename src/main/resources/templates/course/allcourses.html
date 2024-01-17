@@ -30,26 +30,26 @@
         }
 
         /* .alert {
-            padding: 10px;
-            background-color: #01740a;
+            padding: 5px; 
+            background-color: rgba(1, 116, 10, 0.2); 
             color: white;
-            margin-bottom: 15px;
+            margin-bottom: 10px; 
         }
-
+        */
         .closebtn {
-            margin-left: 15px;
-            color: white;
+            margin-left: 5px; 
+            color: rgb(0, 0, 0);
             font-weight: bold;
             float: right;
-            font-size: 22px;
-            line-height: 20px;
+            font-size: 18px; 
+            line-height: 16px; 
             cursor: pointer;
             transition: 0.3s;
         }
 
         .closebtn:hover {
             color: black;
-        } */
+        } 
     </style>
 </head>
 <body>
@@ -74,10 +74,12 @@
         </div>
     </div>
 </nav>
-<!-- <div th:if="${alreadyEnrolled}" class="alert">
-    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-    You are already enrolled in this course.
-</div> -->
+<div class="col-md-6 offset-md-3">
+    <div th:if="${alreadyEnrolled}" class="alert alert-success">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        You are already enrolled in this course.
+    </div>
+</div>
 <br /><br />
     <div class="row">
         <table class="table">
@@ -86,6 +88,7 @@
                 <th>Course Name</th>
                 <th>Course Type</th>
                 <th>Course Credits</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -94,9 +97,9 @@
                 <td th:text="${course.getType()}"></td>
                 <td th:text="${course.getCredits()}"></td>
                 <td>
-                    <form th:action="@{/course/allcourses}" method="post">
+                    <form th:action="@{/course/enrollcourse}" method="post">
                         <input type="hidden" name="id" th:value="${course.id}" />
-                        <button type="submit">Запиши се</button>
+                        <button type="submit" class="btn btn-light">Запиши ме</button>
                     </form>
                 </td>
             </tr>

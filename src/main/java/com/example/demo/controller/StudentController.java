@@ -15,6 +15,7 @@ import com.example.demo.model.User;
 import com.example.demo.model.Role;
 import com.example.demo.repository.EnrollmentRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.util.Result;
 import com.example.demo.repository.RoleRepository;
 
 import org.springframework.ui.Model;
@@ -60,6 +61,10 @@ public class StudentController {
         model.addAttribute("user", user);
         model.addAttribute("userRole", userRole);
         
+        Result res = new Result(enrollmentRepository);
+        res.init(user);
+
+        model.addAttribute("results", res);
         return "student/profile";
     }
 }
